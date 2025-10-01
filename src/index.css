@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("./assets/Fonts/LibreBaskerville-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
