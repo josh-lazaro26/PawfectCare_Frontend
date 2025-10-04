@@ -5,7 +5,7 @@ import BookingPoster from "../../assets/User-Page-Image/BookingPoster.png";
 import consultation from "../../assets/User-Page-Image/consultation.svg";
 import deworm from "../../assets/User-Page-Image/deworm.svg";
 import Footer from "../../Components/Footer/Footer";
-import { getApiBaseUrl } from "../../../../Backend/config/API_BASE_URL";
+// import { getApiBaseUrl } from "../../../../Backend/config/API_BASE_URL";
 
 function BookingPage() {
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ function BookingPage() {
           </h2>
 
           {/* GRID: 2 columns on mobile, keeps 2 on small, 3 on md */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 justify-items-center">
+         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 justify-items-center lg:grid-cols-2 lg:w-fit lg:gap-16 lg:mx-auto">
             {services.map((service, index) => (
               <div
                 key={index}

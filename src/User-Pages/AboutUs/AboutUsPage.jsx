@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DogAndCat from "../../assets/User-Page-Image/DogAndCatImage.png";
 import UserNavigation from "../../Components/Navigation/TopNavUser";
 import Footer from "../../Components/Footer/Footer";
-import { getApiBaseUrl } from "../../../../Backend/config/API_BASE_URL";
+// import { getApiBaseUrl } from "../../../../Backend/config/API_BASE_URL";
 
 function AboutUsPage() {
   const navigate = useNavigate();

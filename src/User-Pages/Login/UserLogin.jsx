@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { getApiBaseUrl } from "../../../../Backend/config/API_BASE_URL";
+// import { getApiBaseUrl } from "../../../../Backend/config/API_BASE_URL";
 
 function UserLoginPage() {
   const [email, setEmail] = useState("");

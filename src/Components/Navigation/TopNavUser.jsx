@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import PawfectCareLogo from "../../assets/User-Page-Image/PawfectCareLogo.svg";
 import { Aperture, ChevronDown } from "lucide-react";
-import { getApiBaseUrl } from "../../../../Backend/config/API_BASE_URL";
+//import { getApiBaseUrl } from "../../../../Backend/config/API_BASE_URL";
 
 const TopNavUser = () => {
   const navigate = useNavigate();
@@ -146,6 +146,29 @@ const TopNavUser = () => {
             )}
           </span>
         </button>
+        {isDropdownOpen && (
+          <div
+           ref={dropdownRef}
+            className="absolute right-4 top-14 bg-white shadow-md rounded-lg w-40 py-2"
+          >
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <button
+                onClick={() => navigate("/user/login")}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+              Sign Out
+              </button>
+            )}
+          </div>
+        )}
+
         <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
           <svg
             className="w-6 h-6 md:w-7 md:h-7"
@@ -194,6 +217,7 @@ const TopNavUser = () => {
           >
             Book
           </button>
+          
           {user ? (
             <button
               onClick={handleLogout}
