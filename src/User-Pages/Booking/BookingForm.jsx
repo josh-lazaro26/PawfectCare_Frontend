@@ -14,15 +14,6 @@ function BookingForm() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Check JWT token and redirect if missing
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.warn("Token not found. Redirecting to login...");
-      // navigate("/user/login", { replace: true });
-    }
-  }, [navigate]);
-
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,14 +44,13 @@ function BookingForm() {
 
       if (response.ok) {
         setShowModal(true);
-
-        //Auto-close modal & redirect after 2s
         setTimeout(() => {
           setShowModal(false);
           navigate("/user/booking-form");
         }, 2000);
       } else {
-        alert(data.message || "Failed to create booking");
+        alert("Failed to create booking need to Sign in");
+        navigate("/user/login");
       }
     } catch (error) {
       console.error("Error creating booking:", error);

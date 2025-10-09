@@ -22,7 +22,7 @@ const TopNavUser = () => {
       setLoading(false);
     }, 200);
   };
-
+  const isGuest = !user?.first_name && !user?.last_name;
   const isActive = (path) => location.pathname === path;
 
   // Function to format name(s) to CamelCase
@@ -136,16 +136,35 @@ const TopNavUser = () => {
 
       {/* Right side: User + hamburger */}
       <div className="flex items-center gap-2 md:gap-4 ml-auto">
-        <button
-          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="flex items-center gap-2 px-3 py-2 md:px-6 md:py-3 transition text-sm md:text-base"
-        >
-          <span className="font-bold">
-            {formatName(
-              `${user?.first_name || "Guest"} ${user?.last_name || ""}`
-            )}
-          </span>
-        </button>
+        {isGuest ? (
+          <button
+            onClick={() => delayedNavigate("/user/login")}
+            className="px-3 py-2 md:px-6 md:py-3 transition text-sm md:text-base font-bold border shadow-sm hover:bg-gray-100 rounded-lg"
+          >
+            Sign In
+          </button>
+        ) : (
+          <button
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="flex items-center gap-2 px-3 py-2 md:px-6 md:py-3 transition text-sm md:text-base border rounded-lg hover:bg-gray-100"
+          >
+            <span
+              className="font-bold"
+              onClick={() => {
+                if (!isDropdownOpen) {
+                  // Execute delayed navigation when dropdown is closed
+                  delayedNavigate();
+                }
+                // Do nothing if dropdown is open (isDropdownOpen === true)
+              }}
+              style={{ cursor: isDropdownOpen ? "default" : "pointer" }}
+            >
+              {formatName(
+                `${user?.first_name || "Guest"} ${user?.last_name || ""}`
+              )}
+            </span>
+          </button>
+        )}
         <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
           <svg
             className="w-6 h-6 md:w-7 md:h-7"

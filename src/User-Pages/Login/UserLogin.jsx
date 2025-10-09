@@ -18,34 +18,34 @@ function UserLoginPage() {
     setError("");
     setLoading(true);
 
-    // try {
-    //   const res = await fetch(`${getApiBaseUrl()}/users/login`, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ email, password }),
-    //   });
+    try {
+      const res = await fetch(`${getApiBaseUrl()}/users/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    //   const data = await res.json();
+      const data = await res.json();
 
-    //   if (!res.ok) {
-    //     throw new Error(data.message || "Login failed");
-    //   }
+      if (!res.ok) {
+        throw new Error(data.message || "Login failed");
+      }
 
-    //   //Save token & user info
-    //   localStorage.setItem("token", data.token);
-    //   localStorage.setItem("user", JSON.stringify(data.user));
+      //Save token & user info
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-    //   //Redirect based on role
-    //   if (data.user.role === "admin") {
-    //     navigate("/admin/dashboard");
-    //   } else {
-    navigate("/user/about");
-    //   }
-    // } catch (err) {
-    //   setError(err.message);
-    // } finally {
-    //   setLoading(false);
-    // }
+      //Redirect based on role
+      if (data.user.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/user/about");
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

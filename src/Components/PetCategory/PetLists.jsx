@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getApiBaseUrl } from "../../../../Backend/config/API_BASE_URL";
 
-function PetLists({ selectedCategory, token }) {
+function PetLists({ selectedCategory }) {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedPet, setSelectedPet] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) return;
-
     const fetchPets = async () => {
       try {
+        setLoading(true);
+        setError(null);
+
         let url = `${getApiBaseUrl()}/pets/getAllPets`;
 
         if (selectedCategory !== "All") {
@@ -22,27 +24,30 @@ function PetLists({ selectedCategory, token }) {
         const res = await fetch(url, {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
         });
 
         if (!res.ok) {
-          throw new Error("Failed to fetch pets");
+          throw new Error(`HTTP error! status: ${res.status}`);
         }
 
         const data = await res.json();
         setPets(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching pets:", error);
+        setError(error.message);
+        setPets([]);
       } finally {
         setLoading(false);
       }
     };
 
     fetchPets();
-  }, [selectedCategory, token]);
+  }, [selectedCategory]);
 
   if (loading) return <p className="text-center">Loading pets...</p>;
+  if (error) return <p className="text-center text-red-600">Error: {error}</p>;
 
   return (
     <>

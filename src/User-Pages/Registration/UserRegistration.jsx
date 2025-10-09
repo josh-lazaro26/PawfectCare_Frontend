@@ -52,45 +52,45 @@ export default function UserRegistrationPage() {
     setError("");
     setLoading(true);
 
-    // if (formData.password !== formData.confirmPassword) {
-    //   setError("Passwords do not match!");
-    //   setLoading(false);
-    //   return;
-    // }
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match!");
+      setLoading(false);
+      return;
+    }
 
-    // try {
-    //   const response = await fetch(`${getApiBaseUrl()}/users/register`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       first_name: formData.first_name,
-    //       last_name: formData.last_name,
-    //       email: formData.email,
-    //       monthly_salary: formData.monthly_salary,
-    //       birthdate: formData.birthdate,
-    //       age: formData.age,
-    //       sex: formData.sex,
-    //       address: formData.address,
-    //       password: formData.password,
-    //       role: "pet owner",
-    //     }),
-    //   });
+    try {
+      const response = await fetch(`${getApiBaseUrl()}/users/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          email: formData.email,
+          monthly_salary: formData.monthly_salary,
+          birthdate: formData.birthdate,
+          age: formData.age,
+          sex: formData.sex,
+          address: formData.address,
+          password: formData.password,
+          role: "pet owner",
+        }),
+      });
 
-    //   const data = await response.json();
+      const data = await response.json();
 
-    //   if (!response.ok) {
-    //     throw new Error(data.message || "Registration failed");
-    //   }
+      if (!response.ok) {
+        throw new Error(data.message || "Registration failed");
+      }
 
-    //   alert("Registration successful!");
-    //   // navigate("/user/login");
-    // } catch (err) {
-    //   setError(err.message);
-    // } finally {
-    //   setLoading(false);
-    // }
+      alert("Registration successful!");
+      // navigate("/user/login");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

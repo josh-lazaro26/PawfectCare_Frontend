@@ -12,27 +12,26 @@ function AboutUsPage() {
     const token = localStorage.getItem("token");
     if (!token) {
       console.warn("Token not found. Redirecting to login...");
-      // navigate("/user/login", { replace: true });
       return;
     }
 
-    // fetch(`${getApiBaseUrl()}/users/me`, {
-    //   method: "GET",
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // })
-    //   .then((res) => {
-    //     if (!res.ok) {
-    //       throw new Error("Failed to fetch user");
-    //     }
-    //     return res.json();
-    //   })
-    //   .catch((err) => {
-    //     console.error("Error fetching user:", err);
-    //     localStorage.removeItem("token");
-    //     // navigate("/user/login", { replace: true });
-    //   });
+    fetch(`${getApiBaseUrl()}/users/me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch user");
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        console.error("Error fetching user:", err);
+        localStorage.removeItem("token");
+        navigate("/user/login", { replace: true });
+      });
   }, [navigate]);
 
   return (

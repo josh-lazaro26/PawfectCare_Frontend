@@ -5,7 +5,6 @@ import AdoptionBanner from "../../assets/User-Page-Image/AdoptionBanner.png";
 import PetGroup from "../../assets/User-Page-Image/PetGroup.svg";
 import AdoptionConfirmationModal from "../../Components/Modals/AdoptionConfirmationModal";
 import ChatWidget from "../../Components/ChatWidget/ChatWidget";
-import Footer from "../../Components/Footer/Footer";
 import CategoryButtons from "../../Components/PetCategory/CategoryButtons";
 import PetLists from "../../Components/PetCategory/PetLists";
 
@@ -19,12 +18,6 @@ function AdoptionPage() {
   const [selectedPet, setSelectedPet] = useState(null);
 
   const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    if (!token) {
-      // navigate("/user/login", { replace: true });
-    }
-  }, [token, navigate]);
 
   useEffect(() => {
     if (location.state?.showAdoptionConfirmation) {
@@ -55,7 +48,7 @@ function AdoptionPage() {
           Available Pets for Adoption
         </h2>
 
-        {/* ✅ Pass token to CategoryButtons */}
+        {/*Pass token to CategoryButtons */}
         <CategoryButtons
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
@@ -73,7 +66,7 @@ function AdoptionPage() {
           </div>
         )}
 
-        {/* ✅ Pass token to PetLists */}
+        {/* Pass token to PetLists */}
         {selectedCategory && (
           <PetLists
             selectedCategory={selectedCategory}

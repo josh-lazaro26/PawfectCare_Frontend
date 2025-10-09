@@ -10,11 +10,7 @@ import ProtectedRoute from "../../Components/RouteGuard/NoRoute";
 
 const AboutUsRoute = {
   path: "/user/about",
-  element: (
-    <ProtectedRoute>
-      <AboutUSPage />
-    </ProtectedRoute>
-  ),
+  element: <AboutUSPage />,
 };
 const UserLoginRoute = {
   path: "/user/login",
@@ -26,11 +22,7 @@ const UserRegistrationRoute = {
 };
 const UserAdoptionRoute = {
   path: "/user/adoption",
-  element: (
-    <ProtectedRoute>
-      <AdoptionPage />
-    </ProtectedRoute>
-  ),
+  element: <AdoptionPage />,
 };
 const UserForgotPasswordRoute = {
   path: "/user/forgot-password",
@@ -38,27 +30,15 @@ const UserForgotPasswordRoute = {
 };
 const UserBookingRoute = {
   path: "/user/booking",
-  element: (
-    <ProtectedRoute>
-      <BookingPage />
-    </ProtectedRoute>
-  ),
+  element: <BookingPage />,
 };
 const UserBookingFormRoute = {
   path: "/user/booking-form",
-  element: (
-    <ProtectedRoute>
-      <BookingFormPage />
-    </ProtectedRoute>
-  ),
+  element: <BookingFormPage />,
 };
 const UserAdoptionFormRoute = {
   path: "/user/adoption-form",
-  element: (
-    <ProtectedRoute>
-      <AdoptionFormPage />
-    </ProtectedRoute>
-  ),
+  element: <AdoptionFormPage />,
 };
 
 export {
